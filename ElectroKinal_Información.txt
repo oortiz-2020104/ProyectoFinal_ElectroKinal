@@ -7,3 +7,4 @@ Proyecto final Java EE ElectroKinal
 		Programador #3 Santiago Adolfo López Ramírez - Modelo y Diagrama Entidad Relación.
 		Programador #4 Daniel Alejandro Juárez García - No definifo aún.
 		Programador #5 Robert Denisse López Barahona - Planificación del proyecto en Trello
+		Programador #6 Jefri Dennilson Milián Orellana - No definido aún. 
