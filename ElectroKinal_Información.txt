@@ -8,4 +8,5 @@ Proyecto final Java EE ElectroKinal
 		Programador #4 Daniel Alejandro Juárez García - No definifo aún.
 		Programador #5 Robert Denisse López Barahona - Planificación del proyecto en Trello
 		Programador #6 Jefri Dennilson Milián Orellana - No definido aún. 
-		Programador #7 Mynor Roberto López Díaz - Base de Datos.
+		Programador #7 Mynor Roberto López Díaz - Base de Datos. 
+		Programador #8 Abdi Rashid Palma Salvatierra - No definido aún.
