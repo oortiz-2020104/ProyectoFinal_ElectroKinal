@@ -5,4 +5,4 @@ Proyecto final Java EE ElectroKinal
 		Programador #1 Henry Antonio Lima Monzon - No definido aún.
 		Programador #2 Fredy Alexander López Sanic - No definifo aún.
 		Programador #3 Santiago Adolfo López Ramírez - Modelo y Diagrama Entidad Relación.
-	
+		Programador #4 Daniel Alejandro Juárez García - No definifo aún.
