@@ -10,3 +10,4 @@ Proyecto final Java EE ElectroKinal
 		Programador #6 Jefri Dennilson Milián Orellana - No definido aún. 
 		Programador #7 Mynor Roberto López Díaz - Base de Datos. 
 		Programador #8 Abdi Rashid Palma Salvatierra - No definido aún.
+		Programador #9 Javier Alexander Linares Chang - No definido aún.
