@@ -1,0 +1,5 @@
+Proyecto final Java EE ElectroKinal
+	Scrum master: Osmar Emilio Ortiz de León
+	
+	Programadores:
+	
