@@ -3,4 +3,5 @@ Proyecto final Java EE ElectroKinal
 	
 	Programadores:
 		Programador #1 Henry Antonio Lima Monzon - No definido aún.
+		Programador #2 Fredy Alexander López Sanic - No definifo aún.
 	
