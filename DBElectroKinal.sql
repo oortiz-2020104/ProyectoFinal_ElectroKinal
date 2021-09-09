@@ -51,7 +51,7 @@ create table DetalleVenta(
     constraint FK_DetalleVenta_Producto foreign key(codigoProducto) references Producto(codigoProducto),
     constraint FK_DetalleVenta_Venta foreign key(codigoVenta) references Venta(codigoVenta)
 );
-
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password By 'admin';
 /*insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
 	values('152525250101','Mynor López','Mixco','1');
 insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
