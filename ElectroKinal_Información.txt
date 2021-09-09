@@ -1,0 +1,14 @@
+Proyecto final Java EE ElectroKinal
+	Scrum master: Osmar Emilio Ortiz de León - Diseño gráfico de la página.
+	
+	Programadores:
+		Programador #1 Henry Antonio Lima Monzon - Página principal y login.
+		Programador #2 Fredy Alexander López Sanic - Página empleado.
+		Programador #3 Santiago Adolfo López Ramírez - Modelo y Diagrama Entidad Relación.
+		Programador #4 Daniel Alejandro Juárez García - Página cliente.
+		Programador #5 Robert Denisse López Barahona - Planificación del proyecto en Trello
+		Programador #6 Jefri Dennilson Milián Orellana - Creación y configuración del proyecto. 
+		Programador #7 Mynor Roberto López Díaz - Base de Datos. 
+		Programador #8 Abdi Rashid Palma Salvatierra - Página producto.
+		Programador #9 Javier Alexander Linares Chang - Modelo de entidad y modelos DAO.
+		Programador #10 Byron Osvaldo Pérez Ulin - Página nueva venta.
