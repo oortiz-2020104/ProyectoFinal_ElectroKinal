@@ -1,75 +1,91 @@
-drop database if exists DBElectroKinal;
+drop database DBElectroKinal;
 create database DBElectroKinal;
+
 use DBElectroKinal;
 
 create table Cliente(
 	codigoCliente int not null auto_increment,
-    DPICliente VARCHAR(15) not null,
-    nombresCliente VARCHAR(200) not null,
-	direccionCliente VARCHAR(150) not null,
-	estado VARCHAR(1) not null,
-    primary key PK_codigoCliente(codigoCliente)
+    DPICliente varchar(15) not null,
+    nombresCliente varchar(200) not null,
+    direcciónCliente varchar(200) not null,
+    estado varchar(1) not null,
+    
+    primary key PK_codigoCliente (codigoCliente)
 );
-Create table Empleado(
+
+create table Empleado(
 	codigoEmpleado int not null auto_increment,
-    DPIEmpleado varchar(15)not null,
+    DPIEmpleado varchar(15) not null,
     nombresEmpleado varchar(200) not null,
-    telefonoEmpleado varchar(8)not null,
+    telefonoEmpleado varchar(200) not null,
     estado varchar(1) not null,
     usuario varchar(15) not null,
-    primary key pk_codigoEmpleado(codigoEmpleado)
+    
+    primary key PK_codigoEmpleado (codigoEmpleado)
 );
-Create table Producto(
+
+create table Producto(
 	codigoProducto int not null auto_increment,
     nombreProducto varchar(200) not null,
-    precio double not null,
+    precioProducto double not null,
     stock int not null,
     estado varchar(1) not null,
-    primary key PK_codigoProducto(codigoProducto)
+    
+    primary key PK_codigoProducto (codigoProducto)
 );
+
 create table Venta(
 	codigoVenta int not null auto_increment,
     numeroSerie varchar(255) not null,
     fechaVenta date not null,
     monto double not null,
     estado varchar(1) not null,
+    
     codigoCliente int not null,
     codigoEmpleado int not null,
-    codigoProducto int not null,
-    primary key PK_codigoVenta(codigoVenta),
-    constraint FK_Venta_Cliente foreign key (codigoCliente) references Cliente(codigoCliente),
-    constraint FK_Venta_Empleados foreign key(codigoEmpleado) references Empleado(codigoEmpleado),
-    constraint FK_Venta_Producto foreign key(codigoProducto) references Producto(codigoProducto)
+    
+    primary key PK_codigoVenta (codigoVenta),
+    
+    constraint FK_Venta_Cliente foreign key(codigoCliente)
+			references Cliente(codigoCliente),
+	constraint FK_Venta_Empleado foreign key(codigoEmpleado)
+			references Empleado(codigoEmpleado)
 );
+
 create table DetalleVenta(
 	codigoDetalleVenta int not null auto_increment,
-    codigoProducto int not null,
     cantidad int not null,
     precioVenta double not null,
-    codigoVenta int not null,
-    primary key PK_codigoDetalleVenta(codigoDetalleVenta),
-    constraint FK_DetalleVenta_Producto foreign key(codigoProducto) references Producto(codigoProducto),
-    constraint FK_DetalleVenta_Venta foreign key(codigoVenta) references Venta(codigoVenta)
-);
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password By 'admin';
-
-insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
-	values('152525250101','Mynor López','Mixco','1');
-insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
-	values('25654890101','Pedro Armas','Mixco','1');
-insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
-	values('123456780101','Jorge Perez','Guatemala','1');
-insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
-	values('987654320101','Jose Chajon','Zona 1','1');
     
-insert into Empleado(DPIEmpleado,nombresEmpleado,telefonoEmpleado,estado,usuario)
-	values('0505050101','Carlos Ruiz','50203040','1','cruiz');
-insert into Empleado(DPIEmpleado,nombresEmpleado,telefonoEmpleado,estado,usuario)
-	values('20202020101','Juan Rivas','30406080','1','jrivas');
-insert into Empleado(DPIEmpleado,nombresEmpleado,telefonoEmpleado,estado,usuario)
-	values('123','usuarioprueba','48822092','1','uprueba');
+	codigoProducto int not null,
+    codigoVenta int not null,
+    
+    primary key PK_codigoDetalleVenta (codigoDetalleVenta),
+    
+    constraint FK_DetalleVenta_Producto foreign key(codigoProducto)
+			references Producto(codigoProducto),
+	constraint FK_DetalleVenta_Venta foreign key(codigoVenta)
+			references Venta(codigoVenta)
+);
 
-insert into Producto(nombreProducto,precio,stock,estado)
-	values('Teclado Durabrand',105.00,25,'1');
-insert into Producto(nombreProducto,precio,stock,estado)
-	values('Laptop Acer Nitro 5',9850.00,5,'1');   
+alter user'root'@'localhost' identified with mysql_native_password by 'admin';
+
+insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+	values ('123456789123456', 'Osmar Ortiz', 'Zona 6 de Mixco', '1');
+insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+	values ('147852369789842', 'Emilio de León', 'Zona 4', '1');
+insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+	values ('125487965325214', 'Mía Santos', 'Zona 1', '1');
+insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+	values ('102360520148620', 'Alen Rodríguez', 'Zona 19', '1');
+    
+insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario)
+	values (102360520148620, 'Osmar Ortiz', '45658525', '1', 'oortiz');
+insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario)
+	values (555, 'Claudia Santos', '45658525', '1', 'csantos');
+    
+insert into Producto (nombreProducto, precioProducto, stock, estado)
+	values ('Mouse Logitech G203 Lightsync blaco', 250.00, 23, '1');
+    
+select * from Empleado;
+select * from Cliente;
