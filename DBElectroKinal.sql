@@ -7,7 +7,7 @@ create table Cliente(
 	codigoCliente int not null auto_increment,
     DPICliente varchar(15) not null,
     nombresCliente varchar(200) not null,
-    direcciónCliente varchar(200) not null,
+    direccionCliente varchar(200) not null,
     estado varchar(1) not null,
     
     primary key PK_codigoCliente (codigoCliente)
@@ -71,18 +71,16 @@ create table DetalleVenta(
 alter user'root'@'localhost' identified with mysql_native_password by 'admin';
 
 insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
-	values ('123456789123456', 'Osmar Ortiz', 'Zona 6 de Mixco', '1');
-insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
-	values ('147852369789842', 'Emilio de León', 'Zona 4', '1');
-insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
 	values ('125487965325214', 'Mía Santos', 'Zona 1', '1');
 insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
 	values ('102360520148620', 'Alen Rodríguez', 'Zona 19', '1');
+insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+	values ('789852326585954', 'José Cifuentes', 'Zona 8', '1');
     
 insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario)
-	values (102360520148620, 'Osmar Ortiz', '45658525', '1', 'oortiz');
-insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario)
 	values (555, 'Claudia Santos', '45658525', '1', 'csantos');
+insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario)
+	values (555, 'Usuario de Prueba', '78985632', '1', 'udeprueba');
     
 insert into Producto (nombreProducto, precioProducto, stock, estado)
 	values ('Mouse Logitech G203 Lightsync blaco', 250.00, 23, '1');
