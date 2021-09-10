@@ -129,4 +129,15 @@ public class EmpleadoDAO {
         }
         return resp;
     }
+    
+    public void eliminar (int id) {
+        String sql = "delete from empleado where codigoEmpleado ="+id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
