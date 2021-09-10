@@ -88,4 +88,25 @@ public class EmpleadoDAO {
         }
         return resp;
     }
+    
+    public Empleado listarCodigoEmpleado(int id) {
+        Empleado emp = new Empleado();
+        String sql = "select * from Empleado where codigoEmpleado ="+id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                emp.setDPIEmpleado(rs.getString(2));
+                emp.setNombresEmpleado(rs.getString(3));
+                emp.setTelefonoEmpleado(rs.getString(4));
+                emp.setUsuario(rs.getString(5));
+                emp.setEstado(rs.getString(6));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return emp;
+    }
 }
