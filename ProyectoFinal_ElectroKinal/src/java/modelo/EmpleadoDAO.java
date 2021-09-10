@@ -9,6 +9,8 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -42,5 +44,30 @@ public class EmpleadoDAO {
             e.printStackTrace();
         }
         return empleado;
+    }
+    
+    public List listar() {
+        String sql = "select * from Empleado";
+        List<Empleado> listaEmpleado = new ArrayList<>();
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Empleado em = new Empleado();
+                em.setCodigoEmpleado(rs.getInt(1));
+                em.setDPIEmpleado(rs.getString(2));
+                em.setNombresEmpleado(rs.getString(3));
+                em.setTelefonoEmpleado(rs.getString(4));
+                em.setEstado(rs.getString(5));
+                em.setUsuario(rs.getString(6));
+                listaEmpleado.add(em);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No se puedo establecer la conexión");
+        }
+
+        return listaEmpleado;
     }
 }
