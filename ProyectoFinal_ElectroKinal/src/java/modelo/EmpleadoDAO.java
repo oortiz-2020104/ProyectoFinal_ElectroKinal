@@ -109,4 +109,24 @@ public class EmpleadoDAO {
         }
         return emp;
     }
+    
+    public int actualizar(Empleado emp) {
+        String sql = "update Empleado set DPIEmpleado = ?, nombresEmpleado = ?, telefonoEmpleado = ?, estado = ?, usuario = ? where codigoEmpleado = ?";
+
+        try {
+            con = cn.Conexion();
+            ps = con.prepareCall(sql);
+
+            ps.setString(1, emp.getDPIEmpleado());
+            ps.setString(2, emp.getNombresEmpleado());
+            ps.setString(3, emp.getTelefonoEmpleado());
+            ps.setString(4, emp.getEstado());
+            ps.setString(5, emp.getUsuario());
+            ps.setInt(6, emp.getCodigoEmpleado());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }
