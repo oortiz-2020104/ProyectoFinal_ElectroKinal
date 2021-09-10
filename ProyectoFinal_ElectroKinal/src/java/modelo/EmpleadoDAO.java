@@ -70,4 +70,22 @@ public class EmpleadoDAO {
 
         return listaEmpleado;
     }
+    
+    public int agregar(Empleado emp) {
+        String sql = "insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario) values (?, ?, ?, ?, ?)";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, emp.getDPIEmpleado());
+            ps.setString(2, emp.getNombresEmpleado());
+            ps.setString(3, emp.getTelefonoEmpleado());
+            ps.setString(4, emp.getEstado());
+            ps.setString(5, emp.getUsuario());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }
