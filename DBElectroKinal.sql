@@ -52,7 +52,8 @@ create table DetalleVenta(
     constraint FK_DetalleVenta_Venta foreign key(codigoVenta) references Venta(codigoVenta)
 );
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password By 'admin';
-/*insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
+
+insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
 	values('152525250101','Mynor López','Mixco','1');
 insert into Cliente(DPICliente,nombresCliente,direccionCliente,estado)
 	values('25654890101','Pedro Armas','Mixco','1');
@@ -65,17 +66,10 @@ insert into Empleado(DPIEmpleado,nombresEmpleado,telefonoEmpleado,estado,usuario
 	values('0505050101','Carlos Ruiz','50203040','1','cruiz');
 insert into Empleado(DPIEmpleado,nombresEmpleado,telefonoEmpleado,estado,usuario)
 	values('20202020101','Juan Rivas','30406080','1','jrivas');
-    
+insert into Empleado(DPIEmpleado,nombresEmpleado,telefonoEmpleado,estado,usuario)
+	values('123','usuarioprueba','48822092','1','uprueba');
+
 insert into Producto(nombreProducto,precio,stock,estado)
 	values('Teclado Durabrand',105.00,25,'1');
 insert into Producto(nombreProducto,precio,stock,estado)
 	values('Laptop Acer Nitro 5',9850.00,5,'1');   
-
-select * from Cliente;
-select * from Empleado;
-select * from Producto;
-*/
-    
-    
-    
-    
