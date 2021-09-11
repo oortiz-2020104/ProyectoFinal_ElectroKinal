@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="Controlador?menu=Empleado" target="myFrame">Empleados</a>
+                            <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myFrame">Empleados</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Controlador?menu=Producto" target="myFrame">Productos</a>
