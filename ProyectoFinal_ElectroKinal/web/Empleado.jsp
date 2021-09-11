@@ -19,23 +19,23 @@
                     <form action="Controlador?menu=Empleado" method="POST">
                         <div class="form-group">
                             <label>DPI:</label>
-                            <input type="text"  name="txtDPIEmpleado" class="form-control">
+                            <input type="text" value="${empleado.getDPIEmpleado()}" name="txtDPIEmpleado" class="form-control">
                         </div>
                         <div class="form-group">
                             <label style="margin-top: 10px;">Nombres:</label>
-                            <input type="text"  name="txtNombresEmpleado" class="form-control">
+                            <input type="text" value="${empleado.getNombresEmpleado()}" name="txtNombresEmpleado" class="form-control">
                         </div>
                         <div class="form-group">
                             <label style="margin-top: 10px;">Teléfono:</label>
-                            <input type="text"  name="txtTelefonoEmpleado" class="form-control">
+                            <input type="text" value="${empleado.getTelefonoEmpleado()}" name="txtTelefonoEmpleado" class="form-control">
                         </div>
                         <div class="form-group">
                             <label style="margin-top: 10px;">Estado:</label>
-                            <input type="text" name="txtEstado" class="form-control">
+                            <input type="text" value="${empleado.getEstado()}" name="txtEstado" class="form-control">
                         </div>
                         <div class="form-group">
                             <label style="margin-top: 10px;">Usuario:</label>
-                            <input type="text"  name="txtUsuario" class="form-control">
+                            <input type="text" value="${empleado.getUsuario()}" name="txtUsuario" class="form-control">
                         </div>
 
                         <input type="submit" name="accion" value="Agregar" class="btn btn-outline-primary" style="margin-top: 15px">
@@ -57,15 +57,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <c:forEach var="empleado" items="${empleados}">
+                            <tr>
+                                <td>${empleado.getCodigoEmpleado()}</td>    
+                                <td>${empleado.getDPIEmpleado()}</td>    
+                                <td>${empleado.getNombresEmpleado()}</td>    
+                                <td>${empleado.getTelefonoEmpleado()}</td>    
+                                <td>${empleado.getEstado()}</td>    
+                                <td>${empleado.getUsuario()}</td>    
+                                <td>
+                                    <a class="btn btn-outline-warning" href="Controlador?menu=Empleado&accion=Editar&codigoEmpleado=${empleado.getCodigoEmpleado()}">Editar</a>
+                                    <a class="btn btn-outline-danger" href="Controlador?menu=Empleado&accion=Eliminar&codigoEmpleado=${empleado.getCodigoEmpleado()}">Eliminar</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
