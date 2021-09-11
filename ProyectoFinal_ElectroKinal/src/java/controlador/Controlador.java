@@ -70,6 +70,22 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
                 } break;
                 
+                case "Actualizar": {
+                    String DPIEmp = request.getParameter("txtDPIEmpleado");
+                    String nombresEmp = request.getParameter("txtNombresEmpleado");
+                    String telefonoEmp = request.getParameter("txtTelefonoEmpleado");
+                    String estEmp = request.getParameter("txtEstado");
+                    String userEmp = request.getParameter("txtUsuario");
+                    empleado.setDPIEmpleado(DPIEmp);
+                    empleado.setNombresEmpleado(nombresEmp);
+                    empleado.setTelefonoEmpleado(telefonoEmp);
+                    empleado.setEstado(estEmp);
+                    empleado.setUsuario(userEmp);
+                    empleado.setCodigoEmpleado(codEmpleado);
+                    empleadoDAO.actualizar(empleado);
+                    request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
+                } break;
+                
             }
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
         }
