@@ -115,7 +115,7 @@ public class EmpleadoDAO {
 
         try {
             con = cn.Conexion();
-            ps = con.prepareCall(sql);
+            ps = con.prepareStatement(sql);
 
             ps.setString(1, emp.getDPIEmpleado());
             ps.setString(2, emp.getNombresEmpleado());
