@@ -86,6 +86,12 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
                 } break;
                 
+                case "Eliminar": {
+                    codEmpleado = Integer.parseInt(request.getParameter("codigoEmpleado"));
+                    empleadoDAO.eliminar(codEmpleado);
+                    request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
+                } break;
+                
             }
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
         }
