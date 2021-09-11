@@ -7,16 +7,21 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Empleado;
+import modelo.EmpleadoDAO;
 
 /**
  *
  * @author jmili
  */
 public class Controlador extends HttpServlet {
+    EmpleadoDAO empleadoDAO = new EmpleadoDAO(); 
+    Empleado empleado = new Empleado();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +40,13 @@ public class Controlador extends HttpServlet {
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
         else if (menu.equals("Empleado")) {
+            
+            switch(accion){
+                case "Listar": {
+                    List listaEmpleados = empleadoDAO.listar();
+                    request.setAttribute("empleados", listaEmpleados);
+                } break;
+            }
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
         }
     }
