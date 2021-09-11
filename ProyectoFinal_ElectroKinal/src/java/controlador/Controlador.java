@@ -46,6 +46,22 @@ public class Controlador extends HttpServlet {
                     List listaEmpleados = empleadoDAO.listar();
                     request.setAttribute("empleados", listaEmpleados);
                 } break;
+                
+                 case "Agregar": {
+                    String DPI = request.getParameter("txtDPIEmpleado");
+                    String nombres = request.getParameter("txtNombresEmpleado");
+                    String telefono = request.getParameter("txtTelefonoEmpleado");
+                    String est = request.getParameter("txtEstado");
+                    String user = request.getParameter("txtUsuario");
+                    empleado.setDPIEmpleado(DPI);
+                    empleado.setNombresEmpleado(nombres);
+                    empleado.setTelefonoEmpleado(telefono);
+                    empleado.setEstado(est);
+                    empleado.setUsuario(user);
+                    empleadoDAO.agregar(empleado);
+                    request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
+                } break;
+                
             }
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
         }
