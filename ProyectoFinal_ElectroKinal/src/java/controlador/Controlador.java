@@ -22,6 +22,7 @@ import modelo.EmpleadoDAO;
 public class Controlador extends HttpServlet {
     EmpleadoDAO empleadoDAO = new EmpleadoDAO(); 
     Empleado empleado = new Empleado();
+    int codEmpleado; 
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,6 +60,13 @@ public class Controlador extends HttpServlet {
                     empleado.setEstado(est);
                     empleado.setUsuario(user);
                     empleadoDAO.agregar(empleado);
+                    request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
+                } break;
+                
+                case "Editar": {
+                    codEmpleado = Integer.parseInt(request.getParameter("codigoEmpleado"));
+                    Empleado e = empleadoDAO.listarCodigoEmpleado(codEmpleado);
+                    request.setAttribute("empleado", e);
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
                 } break;
                 
