@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
+import modelo.Producto;
+import modelo.ProductoDAO;
 
 /**
  *
@@ -21,8 +23,11 @@ import modelo.EmpleadoDAO;
  */
 public class Controlador extends HttpServlet {
     EmpleadoDAO empleadoDAO = new EmpleadoDAO(); 
-    Empleado empleado = new Empleado();
-    int codEmpleado; 
+    Empleado empleado = new Empleado(); 
+    Producto producto = new Producto();
+    ProductoDAO productoDAO = new ProductoDAO();
+    int codEmpleado;  
+    int codProducto;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -94,6 +99,14 @@ public class Controlador extends HttpServlet {
                 
             }
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+        }else if (menu.equals("Producto")){ 
+            switch(accion){ 
+                 case "Listar": {
+                    List listaProductos = productoDAO.listar();
+                    request.setAttribute("productos", listaProductos);
+                }
+                break;
+            }
         }
     }
 
