@@ -70,11 +70,11 @@ create table DetalleVenta(
 
 alter user'root'@'localhost' identified with mysql_native_password by 'admin';
 
-insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+insert into Cliente (DPICliente, nombresCliente, direccionCliente, estado)
 	values ('125487965325214', 'Mía Santos', 'Zona 1', '1');
-insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+insert into Cliente (DPICliente, nombresCliente, direccionCliente, estado)
 	values ('102360520148620', 'Alen Rodríguez', 'Zona 19', '1');
-insert into Cliente (DPICliente, nombresCliente, direcciónCliente, estado)
+insert into Cliente (DPICliente, nombresCliente, direccionCliente, estado)
 	values ('789852326585954', 'José Cifuentes', 'Zona 8', '1');
     
 insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, estado, usuario)
