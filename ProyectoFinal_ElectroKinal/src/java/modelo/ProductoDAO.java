@@ -98,4 +98,15 @@ public class ProductoDAO {
         }
         return resp;
     }
+    
+    public void eliminar (int id) {
+        String sql = "delete from Producto where codigoProducto ="+id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
