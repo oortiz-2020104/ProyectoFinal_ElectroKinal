@@ -79,4 +79,23 @@ public class ProductoDAO {
         }
         return pd;
     }
+    
+    public int actualizar(Producto pd) {
+        String sql = "update Producto set nombreProducto = ?, precioProducto = ?, stock = ?, estado = ? where codigoProducto = ?";
+        
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, pd.getNombreProducto());
+            ps.setDouble(2, pd.getPrecioProducto());
+            ps.setInt(3, pd.getStock());
+            ps.setString(4, pd.getEstado());
+            ps.setInt(5, pd.getCodigoProducto());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }
