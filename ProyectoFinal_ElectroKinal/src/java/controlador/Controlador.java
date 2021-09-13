@@ -125,6 +125,14 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                 }
                 break;
+
+                case "Editar": {
+                    codProducto = Integer.parseInt(request.getParameter("codigoProducto"));
+                    Producto pd = productoDAO.listarCodigoProducto(codProducto);
+                    request.setAttribute("producto", pd);
+                    request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+                }
+                break;
             }
         }
     }
