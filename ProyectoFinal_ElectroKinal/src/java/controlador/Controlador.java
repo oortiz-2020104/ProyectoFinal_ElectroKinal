@@ -133,6 +133,21 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                 }
                 break;
+
+                case "Actualizar": {
+                    String nombrePd = request.getParameter("txtNombreProducto");
+                    double precioPd = Double.parseDouble(request.getParameter("txtPrecioProducto"));
+                    int stock = Integer.parseInt(request.getParameter("txtStock"));
+                    String estPd = request.getParameter("txtEstado");
+                    producto.setNombreProducto(nombrePd);
+                    producto.setPrecioProducto(precioPd);
+                    producto.setStock(stock);
+                    producto.setEstado(estPd);
+                    producto.setCodigoProducto(codProducto);
+                    productoDAO.actualizar(producto);
+                    request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+                }
+                break;
             }
         }
     }
