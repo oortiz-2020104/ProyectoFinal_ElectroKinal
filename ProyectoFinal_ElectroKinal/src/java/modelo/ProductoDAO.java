@@ -43,4 +43,21 @@ public class ProductoDAO {
         }
         return listaProducto;
     }
+    
+    public int agregar(Producto pd) {
+        String sql = "insert into Producto (nombreProducto, precioProducto, stock, estado) values (?, ?, ?, ?)";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, pd.getNombreProducto());
+            ps.setDouble(2, pd.getPrecioProducto());
+            ps.setInt(3, pd.getStock());
+            ps.setString(4, pd.getEstado());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }
