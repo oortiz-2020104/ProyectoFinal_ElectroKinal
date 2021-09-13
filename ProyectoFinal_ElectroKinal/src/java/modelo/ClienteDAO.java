@@ -43,4 +43,21 @@ public class ClienteDAO {
 
         return listaCliente;
     }
+    
+    public int agregar(Cliente cli) {
+        String sql = "insert into Cliente (DPICliente, nombresCliente, direccionCliente, estado) values (?, ?, ?, ?)";
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, cli.getDPICliente());
+            ps.setString(2, cli.getNombresCliente());
+            ps.setString(3, cli.getDireccionCliente());
+            ps.setString(4, cli.getEstado());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resp;
+    }
 }
