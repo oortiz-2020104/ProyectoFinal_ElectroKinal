@@ -60,4 +60,23 @@ public class ProductoDAO {
         }
         return resp;
     }
+    
+    public Producto listarCodigoProducto(int id) {
+        Producto pd = new Producto();
+        String sql = "select * from Producto where codigoProducto ="+id;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                pd.setNombreProducto(rs.getString(2));
+                pd.setPrecioProducto(rs.getDouble(3));
+                pd.setStock(rs.getInt(4));
+                pd.setEstado(rs.getString(5));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pd;
+    }
 }
