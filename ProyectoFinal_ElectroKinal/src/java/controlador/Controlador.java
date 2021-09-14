@@ -180,6 +180,12 @@ public class Controlador extends HttpServlet {
                     clienteDAO.agregar(cliente);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                 }break;
+                case "Editar":{
+                    codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
+                    Cliente c = clienteDAO.listarCodigoCliente(codCliente);
+                    request.setAttribute("cliente", c);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                }break;
                 
             }
             request.getRequestDispatcher("Cliente.jsp").forward(request, response);
