@@ -168,6 +168,18 @@ public class Controlador extends HttpServlet {
                     List listaClientes = clienteDAO.listar();
                     request.setAttribute("clientes", listaClientes);
                 }break;
+                case "Agregar":{
+                    String DPI = request.getParameter("txtDPICliente");
+                    String nombres = request.getParameter("txtNombresCliente");
+                    String direccion = request.getParameter("txtDireccionCliente");
+                    String est = request.getParameter("txtEstado");
+                    cliente.setDPICliente(DPI);
+                    cliente.setNombresCliente(nombres);
+                    cliente.setDireccionCliente(direccion);
+                    cliente.setEstado(est);
+                    clienteDAO.agregar(cliente);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                }break;
                 
             }
             request.getRequestDispatcher("Cliente.jsp").forward(request, response);
