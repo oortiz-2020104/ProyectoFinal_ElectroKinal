@@ -186,6 +186,19 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("cliente", c);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                 }break;
+                case "Actualizar":{
+                    String DPICl = request.getParameter("txtDPICliente");
+                    String nombresCl = request.getParameter("txtNombresCliente");
+                    String direccionCl = request.getParameter("txtDireccionCliente");
+                    String estCl = request.getParameter("txtEstado");
+                    cliente.setDPICliente(DPICl);
+                    cliente.setNombresCliente(nombresCl);
+                    cliente.setDireccionCliente(direccionCl);
+                    cliente.setEstado(estCl);
+                    cliente.setCodigoCliente(codCliente);
+                    clienteDAO.actualizar(cliente);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                }break;
                 
             }
             request.getRequestDispatcher("Cliente.jsp").forward(request, response);
