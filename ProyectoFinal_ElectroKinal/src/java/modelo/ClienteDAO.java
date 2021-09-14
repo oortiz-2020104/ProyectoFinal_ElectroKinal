@@ -91,7 +91,7 @@ public class ClienteDAO {
             ps.setString(2, cl.getNombresCliente());
             ps.setString(3, cl.getDireccionCliente());
             ps.setString(4, cl.getEstado());
-            ps.setInt(6, cl.getCodigoCliente());
+            ps.setInt(5, cl.getCodigoCliente());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,7 +104,7 @@ public class ClienteDAO {
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
