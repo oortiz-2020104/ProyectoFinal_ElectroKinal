@@ -207,6 +207,16 @@ public class Controlador extends HttpServlet {
                 
             }
             request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+        } else if (menu.equals("NuevaVenta")) {
+            switch (accion){
+                case "BuscarCliente": {
+                    String dpi = request.getParameter("txtCodigoCliente");
+                    cliente.setDPICliente(dpi);
+                    cliente = clienteDAO.buscar(dpi);
+                    request.setAttribute("cliente", cliente);
+                }
+                break;
+            }
         }
     }
 
