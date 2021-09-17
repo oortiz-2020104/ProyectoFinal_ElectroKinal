@@ -4,9 +4,8 @@ package modelo;
  *
  * @author linar
  */
-
 public class Cliente {
-    
+
     private int codigoCliente;
     private String DPICliente;
     private String nombresCliente;
