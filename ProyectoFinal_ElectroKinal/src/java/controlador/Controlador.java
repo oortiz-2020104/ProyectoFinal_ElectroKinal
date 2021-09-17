@@ -239,6 +239,9 @@ public class Controlador extends HttpServlet {
                     cliente.setDPICliente(dpi);
                     cliente = clienteDAO.buscar(dpi);
                     request.setAttribute("cliente", cliente);
+                    lista.clear();
+                    totalPagar = 0.0;
+                    item = 0;
                 }
                 break;
                 
