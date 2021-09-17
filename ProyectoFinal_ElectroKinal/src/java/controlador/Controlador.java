@@ -62,10 +62,11 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         String menu = request.getParameter("menu");
         String accion = request.getParameter("accion");
+
         if (menu.equals("Principal")) {
             request.getRequestDispatcher("Principal.jsp").forward(request, response);
-        } else if (menu.equals("Empleado")) {
 
+        } else if (menu.equals("Empleado")) {
             switch (accion) {
                 case "Listar": {
                     List listaEmpleados = empleadoDAO.listar();
@@ -120,9 +121,9 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
                 }
                 break;
-
             }
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+            
         } else if (menu.equals("Producto")) {
             switch (accion) {
                 case "Listar": {
@@ -176,6 +177,7 @@ public class Controlador extends HttpServlet {
                 break;
             }
             request.getRequestDispatcher("Producto.jsp").forward(request, response);
+            
         } else if (menu.equals("Cliente")) {
             switch (accion) {
                 case "Listar": {
@@ -183,6 +185,7 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("clientes", listaClientes);
                 }
                 break;
+                
                 case "Agregar": {
                     String DPI = request.getParameter("txtDPICliente");
                     String nombres = request.getParameter("txtNombresCliente");
@@ -196,6 +199,7 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                 }
                 break;
+                
                 case "Editar": {
                     codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
                     Cliente c = clienteDAO.listarCodigoCliente(codCliente);
@@ -203,6 +207,7 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                 }
                 break;
+                
                 case "Actualizar": {
                     String DPICl = request.getParameter("txtDPICliente");
                     String nombresCl = request.getParameter("txtNombresCliente");
@@ -217,15 +222,16 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                 }
                 break;
+                
                 case "Eliminar": {
                     codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
                     clienteDAO.eliminar(codCliente);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                 }
                 break;
-
             }
             request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+            
         } else if (menu.equals("NuevaVenta")) {
             switch (accion) {
                 case "BuscarCliente": {
@@ -233,8 +239,12 @@ public class Controlador extends HttpServlet {
                     cliente.setDPICliente(dpi);
                     cliente = clienteDAO.buscar(dpi);
                     request.setAttribute("cliente", cliente);
+                    lista.clear();
+                    totalPagar = 0.0;
+                    item = 0;
                 }
                 break;
+                
                 case "BuscarProducto": {
                     codProducto = Integer.parseInt(request.getParameter("txtCodigoProducto"));
                     producto = productoDAO.listarCodigoProducto(codProducto);
@@ -244,6 +254,7 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("cliente", cliente);
                 }
                 break;
+                
                 case "Agregar": {
                     request.setAttribute("cliente", cliente);
                     totalPagar = 0.0;

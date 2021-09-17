@@ -10,6 +10,7 @@ package modelo;
  * @author santo
  */
 public class Empleado {
+
     private int codigoEmpleado;
     private String DPIEmpleado;
     private String nombresEmpleado;
