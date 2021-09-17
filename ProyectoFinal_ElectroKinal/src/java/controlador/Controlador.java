@@ -7,6 +7,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +19,7 @@ import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Producto;
 import modelo.ProductoDAO;
+import modelo.Venta;
 
 /**
  *
@@ -25,12 +27,24 @@ import modelo.ProductoDAO;
  */
 public class Controlador extends HttpServlet {
 
-    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
     Empleado empleado = new Empleado();
+    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+
     Producto producto = new Producto();
     ProductoDAO productoDAO = new ProductoDAO();
-    Cliente cliente=new Cliente();
-    ClienteDAO clienteDAO=new ClienteDAO();
+
+    Cliente cliente = new Cliente();
+    ClienteDAO clienteDAO = new ClienteDAO();
+
+    Venta venta = new Venta();
+    List<Venta> lista = new ArrayList<>();
+
+    int item = 0;
+    int codPro, cantidad;
+    String descripcion;
+    double precio, subTotal;
+    double totalPagar;
+
     int codEmpleado;
     int codProducto;
     int codCliente;
@@ -152,23 +166,24 @@ public class Controlador extends HttpServlet {
                     productoDAO.actualizar(producto);
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                 }
-                break; 
-                
+                break;
+
                 case "Eliminar": {
                     codProducto = Integer.parseInt(request.getParameter("codigoProducto"));
                     productoDAO.eliminar(codProducto);
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                 }
                 break;
-            } 
+            }
             request.getRequestDispatcher("Producto.jsp").forward(request, response);
-        } else if(menu.equals("Cliente")){
-            switch(accion){
-                case "Listar":{
+        } else if (menu.equals("Cliente")) {
+            switch (accion) {
+                case "Listar": {
                     List listaClientes = clienteDAO.listar();
                     request.setAttribute("clientes", listaClientes);
-                }break;
-                case "Agregar":{
+                }
+                break;
+                case "Agregar": {
                     String DPI = request.getParameter("txtDPICliente");
                     String nombres = request.getParameter("txtNombresCliente");
                     String direccion = request.getParameter("txtDireccionCliente");
@@ -179,14 +194,16 @@ public class Controlador extends HttpServlet {
                     cliente.setEstado(est);
                     clienteDAO.agregar(cliente);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
-                }break;
-                case "Editar":{
+                }
+                break;
+                case "Editar": {
                     codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
                     Cliente c = clienteDAO.listarCodigoCliente(codCliente);
                     request.setAttribute("cliente", c);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
-                }break;
-                case "Actualizar":{
+                }
+                break;
+                case "Actualizar": {
                     String DPICl = request.getParameter("txtDPICliente");
                     String nombresCl = request.getParameter("txtNombresCliente");
                     String direccionCl = request.getParameter("txtDireccionCliente");
@@ -198,15 +215,61 @@ public class Controlador extends HttpServlet {
                     cliente.setCodigoCliente(codCliente);
                     clienteDAO.actualizar(cliente);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
-                }break;
-                case "Eliminar":{
+                }
+                break;
+                case "Eliminar": {
                     codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
                     clienteDAO.eliminar(codCliente);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
-                }break;
-                
+                }
+                break;
+
             }
             request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+        } else if (menu.equals("NuevaVenta")) {
+            switch (accion) {
+                case "BuscarCliente": {
+                    String dpi = request.getParameter("txtCodigoCliente");
+                    cliente.setDPICliente(dpi);
+                    cliente = clienteDAO.buscar(dpi);
+                    request.setAttribute("cliente", cliente);
+                }
+                break;
+                case "BuscarProducto": {
+                    codProducto = Integer.parseInt(request.getParameter("txtCodigoProducto"));
+                    producto = productoDAO.listarCodigoProducto(codProducto);
+                    request.setAttribute("producto", producto);
+                    request.setAttribute("lista", lista);
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("cliente", cliente);
+                }
+                break;
+                case "Agregar": {
+                    request.setAttribute("cliente", cliente);
+                    totalPagar = 0.0;
+                    item = item + 1;
+                    codPro = producto.getCodigoProducto();
+                    descripcion = request.getParameter("txtNombreProducto");
+                    precio = Double.parseDouble(request.getParameter("txtPrecio"));
+                    cantidad = Integer.parseInt(request.getParameter("txtCantidad"));
+                    subTotal = precio * cantidad;
+                    venta = new Venta();
+                    venta.setItem(item);
+                    venta.setCodigoProducto(codProducto);
+                    venta.setDescripcionProducto(descripcion);
+                    venta.setPrecio(precio);
+                    venta.setCantidad(cantidad);
+                    venta.setSubTotal(subTotal);
+                    lista.add(venta);
+                    for (int i = 0; i < lista.size(); i++) {
+                        totalPagar = totalPagar + lista.get(i).getSubTotal();
+                    }
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("lista", lista);
+                }
+                break;
+            }
+            request.getRequestDispatcher("NuevaVenta.jsp").forward(request, response);
         }
     }
 
