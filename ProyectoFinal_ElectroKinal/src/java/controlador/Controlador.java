@@ -216,6 +216,15 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("cliente", cliente);
                 }
                 break;
+                 case "BuscarProducto": {
+                    codProducto = Integer.parseInt(request.getParameter("txtCodigoProducto"));
+                    producto = productoDAO.listarCodigoProducto(codProducto);
+                    request.setAttribute("producto", producto);
+                    request.setAttribute("lista", lista);
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("cliente", cliente);
+                }
+                break;
             }
         }
     }
