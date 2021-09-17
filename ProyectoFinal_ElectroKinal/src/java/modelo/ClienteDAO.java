@@ -4,7 +4,6 @@ package modelo;
  *
  * @author linar
  */
-
 import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +12,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO {
-    
+
     Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     int resp;
+
+    public Cliente buscar(String dpi) {
+        Cliente cl = new Cliente();
+        String sql = "select * from Cliente where DPICliente =" + dpi;
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                cl.setCodigoCliente(rs.getInt(1));
+                cl.setDPICliente(rs.getString(2));
+                cl.setNombresCliente(rs.getString(3));
+                cl.setDireccionCliente(rs.getString(4));
+                cl.setEstado(rs.getString(5));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cl;
+    }
 
     public List listar() {
         String sql = "select * from Cliente";
@@ -27,6 +47,7 @@ public class ClienteDAO {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+            
             while (rs.next()) {
                 Cliente cl = new Cliente();
                 cl.setCodigoCliente(rs.getInt(1));
@@ -43,7 +64,7 @@ public class ClienteDAO {
 
         return listaCliente;
     }
-    
+
     public int agregar(Cliente cl) {
         String sql = "insert into Cliente (DPICliente, nombresCliente, direccionCliente, estado) values (?, ?, ?, ?)";
         try {
@@ -60,14 +81,15 @@ public class ClienteDAO {
         }
         return resp;
     }
-    
+
     public Cliente listarCodigoCliente(int id) {
         Cliente cl = new Cliente();
-        String sql = "select * from Cliente where codigoCliente ="+id;
+        String sql = "select * from Cliente where codigoCliente =" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+            
             while (rs.next()) {
                 cl.setDPICliente(rs.getString(2));
                 cl.setNombresCliente(rs.getString(3));
@@ -79,7 +101,7 @@ public class ClienteDAO {
         }
         return cl;
     }
-    
+
     public int actualizar(Cliente cl) {
         String sql = "update Cliente set DPICliente = ?, nombresCliente = ?, direccionCliente = ?, estado = ? where codigoCliente = ?";
 
@@ -98,9 +120,9 @@ public class ClienteDAO {
         }
         return resp;
     }
-    
-    public void eliminar (int id) {
-        String sql = "delete from cliente where codigoCliente ="+id;
+
+    public void eliminar(int id) {
+        String sql = "delete from cliente where codigoCliente =" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

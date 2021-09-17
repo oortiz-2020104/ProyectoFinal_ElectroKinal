@@ -29,7 +29,7 @@
                             <input type="password" name="txtPass" class="form-control">
                         </div>
                         <div class="d-grid gap-2">
-                        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-block" style="margin: 10px;">
+                            <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-block" style="margin: 10px;">
                         </div>
                     </form>
                 </div>

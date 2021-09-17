@@ -4,9 +4,8 @@ package modelo;
  *
  * @author linar
  */
-
 public class Producto {
-   
+
     private int codigoProducto;
     private String nombreProducto;
     private double precioProducto;
